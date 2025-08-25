@@ -1,4 +1,6 @@
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from dataclasses import dataclass
 
 import numpy as np 
@@ -11,7 +13,6 @@ from sklearn.preprocessing import OneHotEncoder,StandardScaler
 from src.exception import CustomException
 from src.logger import logging
 import os
-
 from src.utils import save_object
 
 @dataclass
@@ -56,7 +57,7 @@ class DataTransformation:
             )
             return preprocessor
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(str(e), sys)
     def initiate_data_transformation(self, train_path, test_path):
             try:
                 train = pd.read_csv(train_path)
@@ -95,7 +96,7 @@ class DataTransformation:
                     self.data_transformation_config.preprocessor_obj_file_path
                 )
             except Exception as e:
-                raise CustomException(e, sys)
+                raise CustomException(str(e), sys)
 if __name__ == "__main__":
     obj = DataTransformation()
     obj.initiate_data_transformation(
