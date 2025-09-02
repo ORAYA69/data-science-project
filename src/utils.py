@@ -35,7 +35,13 @@ def evaluate_models(xtrain,ytrain,xtest,ytest,models,params):
         return report 
     except Exception as e:  
                 raise CustomException(str(e), sys)
-            
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
+
+    except Exception as e:
+        raise CustomException(str(e), sys)
 
 
 
